@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Delete Book</h1>
+            <form method="post">
+                {% csrf_token %}
+                <p>Are you sure delete this book <input type="sbumit" value= "confirm">  </p>
+            </form> 
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+

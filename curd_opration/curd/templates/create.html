@@ -1,0 +1,64 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 py-2">
+            <h1>Create Book and View</h1>
+        </div> 
+        <div class="col-md-8 mb-4 py-2 px-3">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">List of All Books</h4>
+                    <table class="table-responsive table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Book Name</th>
+                                <th>Edition Year</th>
+                                <th>Created Date</th>
+                                <th>Author</th>
+                                <th>View/Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for list in book %}
+                                <tr>
+                                    <td>{{list.book_name}}</td>
+                                    <td>{{list.year_published|date:'d/M/Y'}}</td>
+                                    <td>{{list.created_date|date:'d/M/Y'}}</td>
+                                    <td>{{list.author}}</td>
+                                    <td>
+                                        <a class="btn btn-outline-success" href="{% url 'curd:view_book' list.id %}" class="text-success"> 
+                                            <i class="fa fa-eye-slash"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-outline-danger" href="{%  url 'curd:delete' list.id %}">     
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4 py-2 px-3">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Create Books</h4>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>       
+    </div>
+</div>
+
+{% endblock content %}
+

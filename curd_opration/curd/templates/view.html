@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="container py-5 mt-5">
+    <div class="row">
+        <div class="col-md-8 mb-4 py-2 px-3">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <h1 class="card-title">{{book.book_name}}</h1>
+                    <p class="card-text">
+                        {{book.book_description}}
+                    </p>
+                    <h6 class="bg-dark text-white">
+                        Author: {{book.author}} | Edition: {{book.year_published|date:'d/M/Y'}}
+                    </h6>
+                </div>
+                <div class="card-footer">
+                    <div class="row d-flex align-items-center text-center">
+                        <div class="col-md-4 col-sm-4 col-xm-4">
+                            <div class="text-center text-dange">
+                                Create Date: {{book.created_date|date:'d/M/Y'}} 
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xm-4">
+                            <a class="btn btn-outline-success" href="{% url 'curd:edit_book' book.id %}" class="text-success"> 
+                                <i class="fas fa-edit fa-lg fa-fw"></i>
+                            </a>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xm-4">
+                            <a class="btn btn-outline-danger" href="{%  url 'curd:delete' book.id %}">     
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="col-md-4 mb-4 py-2 px-3">
+            <div class="card border-2">
+                <img src="https://picsum.photos/200" alt="" class="img-card-top">
+            </div>
+        </div>   
+    </div>
+</div>
+
+{% endblock content %}
